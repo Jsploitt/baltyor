@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --navy:       #1B2A4A;
+  --navy-dark:  #0D1A2E;
+  --navy-deep:  #07101E;
+  --gold:       #C9A84C;
+  --gold-light: #D9BE70;
+  --gold-dark:  #A88734;
+  --cream:      #FAF8F4;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar        { width: 6px; }
+::-webkit-scrollbar-track  { background: var(--navy-deep); }
+::-webkit-scrollbar-thumb  { background: var(--gold-dark); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+/* Base font rendering */
+body {
+  -webkit-font-smoothing:  antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-cairo), Cairo, Arial, sans-serif;
+  background-color: #FAF8F4;
+  color: #1B2A4A;
+}
+
+/* Arabic numerals / text improvements */
+[dir='rtl'] {
+  text-align: right;
+}
+[dir='ltr'] {
+  text-align: left;
+}
+
+/* Section heading underline accent */
+.gold-underline {
+  position: relative;
+  display: inline-block;
+}
+.gold-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 48px;
+  height: 3px;
+  background: var(--gold);
+  border-radius: 2px;
+}
+[dir='rtl'] .gold-underline::after {
+  left: auto;
+  right: 0;
+}
+.gold-underline-center::after {
+  left: 50%;
+  transform: translateX(-50%);
+}
+[dir='rtl'] .gold-underline-center::after {
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+}
+
+/* Gold divider line */
+.gold-rule {
+  width: 64px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+  border-radius: 1px;
+  margin: 0 auto;
+}
+
+/* Input styling */
+.input-field {
+  @apply w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/40
+         focus:outline-none focus:border-gold/70 focus:bg-white/15 transition-all duration-200;
+}
+
+/* Button base styles */
+.btn-gold {
+  @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg
+         bg-gold text-navy font-semibold text-sm tracking-wide
+         hover:bg-gold-light active:bg-gold-dark
+         transition-all duration-200 shadow-lg hover:shadow-gold/30;
+}
+.btn-outline {
+  @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg
+         border-2 border-white/40 text-white font-semibold text-sm tracking-wide
+         hover:border-gold hover:text-gold
+         transition-all duration-200;
+}
+.btn-outline-gold {
+  @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg
+         border-2 border-gold text-gold font-semibold text-sm tracking-wide
+         hover:bg-gold hover:text-navy
+         transition-all duration-200;
+}
+
+/* Card */
+.card {
+  @apply bg-white rounded-xl border border-stone/60 p-8
+         hover:border-gold/40 hover:shadow-xl hover:shadow-gold/5
+         transition-all duration-300;
+}
+
+/* Section label */
+.section-label {
+  @apply text-xs font-semibold tracking-[0.2em] uppercase text-gold;
+}
+
+/* Hero glow */
+.hero-glow {
+  background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(201,168,76,0.10) 0%, transparent 60%);
+}
+
+/* Geometric pattern for hero */
+.hero-pattern {
+  background-image:
+    radial-gradient(circle at 25% 25%, rgba(201,168,76,0.04) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(27,42,74,0.6) 0%, transparent 50%),
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A84C' fill-opacity='0.025'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+}
